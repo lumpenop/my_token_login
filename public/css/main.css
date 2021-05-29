@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.joinLayer,
+.loginLayer{
+    display:none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000a6;
+}
+
+.open{
+    display: block !important;
+}
+
+.joinPop,
+.loginPop{
+    width:300px;
+    height: 300px;
+    box-sizing: border-box;
+    padding: 0 50px 50px 50px;
+    background: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.joinPop > h2,
+.loginPop > h2{
+    margin-top: 20px;    
+}
+
+.joinForm > input,
+.loginForm > input{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 7px 14px;
+    margin-top: 10px;
+    border: 1px solid #666;
+}
+
+#localJoin,
+#localLogin{
+    width: 100%;
+    height:30px;
+    border: 1px solid #666;
+    background: #fff;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 12px; 
+}
+
+#idCheckP,
+#pwCheckP1,
+#pwCheckP2{
+    margin-top: 3px;
+    font-size: 12px;
+}
+

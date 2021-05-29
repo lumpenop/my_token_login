@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login with crypto</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/main.js"></script>
+</head>
+<body>
+    <button id="joinBtn">회원가입</button>
+    <button id="loginBtn">로그인</button>
+    <div class="joinLayer">
+        <div class="joinPop">
+            <h2>회원가입 페이지</h2>
+            <div class="joinForm">
+                <input type="text" id="joinId" name="joinId" placeholder="아이디"><span id="duplicateCheck"></span>
+                <p id="idCheckP"></p>
+                <input type="password" id="joinPw" name="joinPw" placeholder="비밀번호">
+                <p id="pwCheckP1"></p>
+                <input type="password" id="checkPw" name="checkPw" placeholder="비밀번호 확인">
+                <p id="pwCheckP2"></p>
+                <button id="localJoin" disabled>회원가입</button>
+            </div>
+        </div>
+    </div>
+    <div class="loginLayer">
+        <div class="loginPop">
+            <h2>로그인 페이지</h2>
+            <div class="loginForm">
+                <input type="text" id="loginId" name="loginId" placeholder="아이디">
+                <input type="password" id="loginPw" name="loginPw" placeholder="비밀번호">
+                <button id="localLogin" disabled>로그인</button>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
