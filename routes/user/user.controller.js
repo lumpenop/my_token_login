@@ -5,9 +5,7 @@ const ctoken = require('../../middleware/jwt');
 let join = async (req, res)=>{
     let joinId = req.body.joinId;
     let joinPw = req.body.joinPw;
-    console.log(joinId, joinPw , 'join post');
     let token = ctoken(joinPw);
-    console.log(token);
     try{
         
         let rst = await User.create({
@@ -26,7 +24,6 @@ let join = async (req, res)=>{
 let login = async (req, res)=>{
     let id = req.body.loginId;
     let pw = req.body.loginPw;
-    console.log(id, pw, 'login post');
     try{
         let result = await User.findAll({
             attributes:['pw'],

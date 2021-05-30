@@ -87,7 +87,6 @@ function login(){
 }
 
 function localJoinCheck(){
-    console.log(idFlag, pwFlag)
     if(idFlag&&pwFlag){
         document.querySelector('#localJoin').disabled = false;
     }else{
@@ -145,7 +144,6 @@ function pwCheck(){
         const checkPw = document.querySelector('#checkPw').value;
         pwCheckP1.style.color = 'blue';
         pwCheckP1.innerHTML = '올바른 형식입니다';
-        console.log(pw, checkPw);
         if(pw == checkPw){
             pwCheckP2.style.color = 'blue';
             pwCheckP2.innerHTML = '일치하는 비밀번호 입니다.';
