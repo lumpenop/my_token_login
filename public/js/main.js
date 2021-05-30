@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', init);
 let idFlag = false;
 let pwFlag = false;
@@ -24,8 +25,8 @@ function init(){
     
 
     // login() 내에서 db연결, pw check해야함
-    localJoin.addEventListener('click', event => login(joinId,joinPw))
-    localLogin.addEventListener('click', event => login(loginId, loginPw))
+    loginId.addEventListener('input', login);
+    loginPw.addEventListener('input', login);
     
 
     // idCheck 내에 db 연결, id 중복체크 해야함
@@ -36,7 +37,33 @@ function init(){
     checkPw.addEventListener('input',localJoinCheck);
 
     // join() 만들어야함
+   
 }
+
+function dpCheck(){
+    let id = document.querySelector('#joinId');
+    let data = {
+        id:id.value,
+    }
+    fetch('http://localhost:3000/user/check',{
+        method: 'post',
+        headers: { "Content-Type":  "application/json" },
+        body:JSON.stringify(data)
+    })
+    .then(res=>{
+        return res.json();
+    })
+    .then(json=>{
+        alert(json.msg);
+        if(!json.check){
+            document.querySelector('#joinId').value = ''
+            document.querySelector('#idCheckP').innerHTML = ''
+        }
+    })
+}
+
+
+
 
 function layerPop(layer){
     layer.classList.add('open');
@@ -49,18 +76,14 @@ function layerClose(event, layer){
 }
 
 function login(){
-
-    if(userId.value == ''){
-        alert('아이디를 입력해주세요')
-        id.focus();
-        return;
+    const id = document.querySelector('#loginId');
+    const pw = document.querySelector('#loginPw');
+    if(id.value.length >= 5 && pw.value.length >= 8){
+        document.querySelector('#localLogin').disabled = false;
+    }else{
+        document.querySelector('#localLogin').disabled = true;
     }
-    if(userId.value == ''){
-        alert('비밀번호를 입력해주세요')
-        pw.focus();
-        return;
-    }
-
+    
 }
 
 function localJoinCheck(){
@@ -75,7 +98,6 @@ function localJoinCheck(){
 function idCheck(){
     let textForId = document.querySelector('#joinId').value;
     const idCheckP = document.querySelector('#idCheckP');
-    
 	const only = /(?=.*[a-z])(?=.*[0-9]).{5,12}$/;
     const special = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
 
@@ -84,7 +106,7 @@ function idCheck(){
         idFlag = false;
         return;
     }
-        
+    
 
 	if (!only.test(textForId) || special.test(textForId)) {
         idCheckP.style.color = 'red';
@@ -92,6 +114,7 @@ function idCheck(){
         idFlag = false;
         return;
     }else{
+        
         idCheckP.style.color = 'blue';
         idCheckP.innerHTML = '올바른 형식입니다.';
         idFlag = true;
@@ -107,6 +130,13 @@ function pwCheck(){
     let pwCheckP2 = document.querySelector('#pwCheckP2');
     const only = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,12}$/
     const special = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+
+    if(pw == ''){
+        pwCheckP1.innerHTML = '';
+        pwFlag = false;
+        return;
+    }
+
     if(!only.test(pw)||special.test(pw)){
         pwCheckP1.style.color = 'red';
         pwCheckP1.innerHTML = '비밀번호는 영문 대소문자와 숫자, 8~12자리'
